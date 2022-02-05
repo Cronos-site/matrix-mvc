@@ -8,11 +8,17 @@ html {
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
 
 body {
   margin-bottom: 60px;
+}
+
+.imgbanner {
+    width : 100%;
+}
+
+.imgbanner img {
+    width: 100%;
+    background-position : center;
+    background-size : cover;
 }
