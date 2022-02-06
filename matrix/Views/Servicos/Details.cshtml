@@ -1,4 +1,4 @@
-﻿@model matrix.Models.Entidades.Postagem
+﻿@model matrix.Models.Entidades.Servicos
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Postagem</h4>
+    <h4>Servicos</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -17,32 +17,32 @@
             @Html.DisplayFor(model => model.Descricao)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Titulo)
+            @Html.DisplayNameFor(model => model.TipoServico)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Titulo)
+            @Html.DisplayFor(model => model.TipoServico)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.UrlFotoServico)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
+            @Html.DisplayFor(model => model.UrlFotoServico)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.mostraPagInicial)
+            @Html.DisplayNameFor(model => model.MostraPagInicial)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.mostraPagInicial)
+            @Html.DisplayFor(model => model.MostraPagInicial)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Pessoa)
+            @Html.DisplayNameFor(model => model.equipe)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Pessoa.Id)
+            @Html.DisplayFor(model => model.equipe.IdEquipe)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.idPost">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.IdServico">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

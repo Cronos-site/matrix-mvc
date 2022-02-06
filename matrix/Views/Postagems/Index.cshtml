@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.mostraPagInicial)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdPessoa)
+                @Html.DisplayNameFor(model => model.Pessoa)
             </th>
             <th></th>
         </tr>
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.mostraPagInicial)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdPessoa)
+                @Html.DisplayFor(modelItem => item.Pessoa.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.idPost">Edit</a> |

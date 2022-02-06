@@ -11,23 +11,23 @@ using matrix.Models.Entidades;
 
 namespace matrix.Controllers
 {
-    public class PostagemsController : Controller
+    public class ServicosController : Controller
     {
         private readonly cronosContext _context;
 
-        public PostagemsController(cronosContext context)
+        public ServicosController(cronosContext context)
         {
             _context = context;
         }
 
-        // GET: Postagems
+        // GET: Servicos
         public async Task<IActionResult> Index()
         {
-            var cronosContext = _context.Postages.Include(p => p.Pessoa);
+            var cronosContext = _context.Servicos.Include(s => s.equipe);
             return View(await cronosContext.ToListAsync());
         }
 
-        // GET: Postagems/Details/5
+        // GET: Servicos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,42 +35,42 @@ namespace matrix.Controllers
                 return NotFound();
             }
 
-            var postagem = await _context.Postages
-                .Include(p => p.Pessoa)
-                .FirstOrDefaultAsync(m => m.idPost == id);
-            if (postagem == null)
+            var servicos = await _context.Servicos
+                .Include(s => s.equipe)
+                .FirstOrDefaultAsync(m => m.IdServico == id);
+            if (servicos == null)
             {
                 return NotFound();
             }
 
-            return View(postagem);
+            return View(servicos);
         }
 
-        // GET: Postagems/Create
+        // GET: Servicos/Create
         public IActionResult Create()
         {
-            ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "IdEquipe", "IdEquipe");
             return View();
         }
 
-        // POST: Postagems/Create
+        // POST: Servicos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idPost,Descricao,Titulo,Date,mostraPagInicial,PessoaId")] Postagem postagem)
+        public async Task<IActionResult> Create([Bind("IdServico,Descricao,TipoServico,UrlFotoServico,MostraPagInicial,EquipeId")] Servicos servicos)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(postagem);
+                _context.Add(servicos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id", postagem.PessoaId);
-            return View(postagem);
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "IdEquipe", "IdEquipe", servicos.EquipeId);
+            return View(servicos);
         }
 
-        // GET: Postagems/Edit/5
+        // GET: Servicos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,23 +78,23 @@ namespace matrix.Controllers
                 return NotFound();
             }
 
-            var postagem = await _context.Postages.FindAsync(id);
-            if (postagem == null)
+            var servicos = await _context.Servicos.FindAsync(id);
+            if (servicos == null)
             {
                 return NotFound();
             }
-            ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id", postagem.PessoaId);
-            return View(postagem);
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "IdEquipe", "IdEquipe", servicos.EquipeId);
+            return View(servicos);
         }
 
-        // POST: Postagems/Edit/5
+        // POST: Servicos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("idPost,Descricao,Titulo,Date,mostraPagInicial,PessoaId")] Postagem postagem)
+        public async Task<IActionResult> Edit(int id, [Bind("IdServico,Descricao,TipoServico,UrlFotoServico,MostraPagInicial,EquipeId")] Servicos servicos)
         {
-            if (id != postagem.idPost)
+            if (id != servicos.IdServico)
             {
                 return NotFound();
             }
@@ -103,12 +103,12 @@ namespace matrix.Controllers
             {
                 try
                 {
-                    _context.Update(postagem);
+                    _context.Update(servicos);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PostagemExists(postagem.idPost))
+                    if (!ServicosExists(servicos.IdServico))
                     {
                         return NotFound();
                     }
@@ -119,11 +119,11 @@ namespace matrix.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id", postagem.PessoaId);
-            return View(postagem);
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "IdEquipe", "IdEquipe", servicos.EquipeId);
+            return View(servicos);
         }
 
-        // GET: Postagems/Delete/5
+        // GET: Servicos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,31 +131,31 @@ namespace matrix.Controllers
                 return NotFound();
             }
 
-            var postagem = await _context.Postages
-                .Include(p => p.Pessoa)
-                .FirstOrDefaultAsync(m => m.idPost == id);
-            if (postagem == null)
+            var servicos = await _context.Servicos
+                .Include(s => s.equipe)
+                .FirstOrDefaultAsync(m => m.IdServico == id);
+            if (servicos == null)
             {
                 return NotFound();
             }
 
-            return View(postagem);
+            return View(servicos);
         }
 
-        // POST: Postagems/Delete/5
+        // POST: Servicos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var postagem = await _context.Postages.FindAsync(id);
-            _context.Postages.Remove(postagem);
+            var servicos = await _context.Servicos.FindAsync(id);
+            _context.Servicos.Remove(servicos);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PostagemExists(int id)
+        private bool ServicosExists(int id)
         {
-            return _context.Postages.Any(e => e.idPost == id);
+            return _context.Servicos.Any(e => e.IdServico == id);
         }
     }
 }

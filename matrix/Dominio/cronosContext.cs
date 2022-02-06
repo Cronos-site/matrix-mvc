@@ -26,5 +26,7 @@ namespace matrix.Dominio
         }
 
         public DbSet<matrix.Models.Entidades.Equipe> Equipe { get; set; }
+
+        public DbSet<matrix.Models.Entidades.Servicos> Servicos { get; set; }
     }
 }

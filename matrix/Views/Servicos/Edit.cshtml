@@ -1,4 +1,4 @@
-﻿@model matrix.Models.Entidades.Postagem
+﻿@model matrix.Models.Entidades.Servicos
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,37 +6,37 @@
 
 <h1>Edit</h1>
 
-<h4>Postagem</h4>
+<h4>Servicos</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="idPost" />
+            <input type="hidden" asp-for="IdServico" />
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" class="form-control" />
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
+                <label asp-for="TipoServico" class="control-label"></label>
+                <input asp-for="TipoServico" class="form-control" />
+                <span asp-validation-for="TipoServico" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+                <label asp-for="UrlFotoServico" class="control-label"></label>
+                <input asp-for="UrlFotoServico" class="form-control" />
+                <span asp-validation-for="UrlFotoServico" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="mostraPagInicial" /> @Html.DisplayNameFor(model => model.mostraPagInicial)
+                    <input class="form-check-input" asp-for="MostraPagInicial" /> @Html.DisplayNameFor(model => model.MostraPagInicial)
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="PessoaId" class="control-label"></label>
-                <select asp-for="PessoaId" class="form-control" asp-items="ViewBag.PessoaId"></select>
-                <span asp-validation-for="PessoaId" class="text-danger"></span>
+                <label asp-for="EquipeId" class="control-label"></label>
+                <select asp-for="EquipeId" class="form-control" asp-items="ViewBag.EquipeId"></select>
+                <span asp-validation-for="EquipeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
