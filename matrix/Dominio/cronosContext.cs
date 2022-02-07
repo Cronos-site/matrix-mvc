@@ -21,7 +21,7 @@ namespace matrix.Dominio
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySql("server=localhost;database=agenciacronos;user id=root;password=1234", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.27-mysql"));
+                optionsBuilder.UseMySql("server=mysqlserver.cmkbevv79elb.us-east-2.rds.amazonaws.com;database=agenciacronos;user id=admin;password=47616d610d0a2202osruc", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.27-mysql"));
             }
         }
 

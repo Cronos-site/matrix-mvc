@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace matrix.Migrations
 {
-    public partial class inicio : Migration
+    public partial class aws : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,6 +64,21 @@ namespace matrix.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Equipe",
+                columns: table => new
+                {
+                    IdEquipe = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    NomeEquipe = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Equipe", x => x.IdEquipe);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -206,8 +221,7 @@ namespace matrix.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     mostraPagInicial = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    IdPessoa = table.Column<int>(type: "int", nullable: false),
-                    PessoaId = table.Column<string>(type: "varchar(255)", nullable: true)
+                    PessoaId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -217,7 +231,35 @@ namespace matrix.Migrations
                         name: "FK_Postages_AspNetUsers_PessoaId",
                         column: x => x.PessoaId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Servicos",
+                columns: table => new
+                {
+                    IdServico = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Descricao = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TipoServico = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UrlFotoServico = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    MostraPagInicial = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    EquipeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Servicos", x => x.IdServico);
+                    table.ForeignKey(
+                        name: "FK_Servicos_Equipe_EquipeId",
+                        column: x => x.EquipeId,
+                        principalTable: "Equipe",
+                        principalColumn: "IdEquipe",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -262,6 +304,11 @@ namespace matrix.Migrations
                 name: "IX_Postages_PessoaId",
                 table: "Postages",
                 column: "PessoaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Servicos_EquipeId",
+                table: "Servicos",
+                column: "EquipeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -285,10 +332,16 @@ namespace matrix.Migrations
                 name: "Postages");
 
             migrationBuilder.DropTable(
+                name: "Servicos");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Equipe");
         }
     }
 }

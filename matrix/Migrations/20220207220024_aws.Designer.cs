@@ -11,8 +11,8 @@ using matrix.Dominio;
 namespace matrix.Migrations
 {
     [DbContext(typeof(cronosContext))]
-    [Migration("20220206230419_fechandoEntidades")]
-    partial class fechandoEntidades
+    [Migration("20220207220024_aws")]
+    partial class aws
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,6 +129,37 @@ namespace matrix.Migrations
                     b.HasIndex("PessoaId");
 
                     b.ToTable("Postages");
+                });
+
+            modelBuilder.Entity("matrix.Models.Entidades.Servicos", b =>
+                {
+                    b.Property<int>("IdServico")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("EquipeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("MostraPagInicial")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("TipoServico")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UrlFotoServico")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IdServico");
+
+                    b.HasIndex("EquipeId");
+
+                    b.ToTable("Servicos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -268,6 +299,17 @@ namespace matrix.Migrations
                         .IsRequired();
 
                     b.Navigation("Pessoa");
+                });
+
+            modelBuilder.Entity("matrix.Models.Entidades.Servicos", b =>
+                {
+                    b.HasOne("matrix.Models.Entidades.Equipe", "equipe")
+                        .WithMany()
+                        .HasForeignKey("EquipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("equipe");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
