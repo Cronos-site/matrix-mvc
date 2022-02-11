@@ -135,7 +135,7 @@
                         lg:mr-0 lg:ml-7
                         xl:ml-12
                       ">
-                                            About
+                                            Quem Somos
                                         </a>
                                     </li>
                                     <li class="relative group">
@@ -154,10 +154,10 @@
                         lg:mr-0 lg:ml-7
                         xl:ml-12
                       ">
-                                            Pricing
+                                            Serviços
                                         </a>
                                     </li>
-                                    <li class="relative group">
+                                    @*<li class="relative group">
                                         <a href="#team"
                                            class="
                         ud-menu-scroll
@@ -175,7 +175,7 @@
                       ">
                                             Team
                                         </a>
-                                    </li>
+                                    </li>*@
                                     <li class="relative group">
                                         <a asp-area="" asp-controller="Postagems" asp-action="Index"
                                            class="
@@ -195,7 +195,7 @@
                                             Blog
                                         </a>
                                     </li>
-                                    <li class="relative group submenu-item">
+                                    @*<li class="relative group submenu-item">
                                         <a href="javascript:void(0)"
                                            class="
                         text-base text-dark
@@ -335,7 +335,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </nav>
+                            </nav>*@
                         </div>
                         <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
                             <a href="signin.html"
@@ -385,9 +385,9 @@
             &copy; 2022 - matrix - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-   @* <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
