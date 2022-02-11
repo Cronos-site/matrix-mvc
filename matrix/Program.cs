@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-//var connectionString = builder.Configuration.GetConnectionString("cronosContextConnection");builder.Services.AddDbContext<cronosContext>(options =>
-//    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<Pessoa>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<cronosContext>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<cronosContext>();

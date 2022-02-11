@@ -23,8 +23,7 @@ namespace matrix.Controllers
         // GET: Postagems
         public async Task<IActionResult> Index()
         {
-            var cronosContext = _context.Postages.Include(p => p.Pessoa);
-            return View(await cronosContext.ToListAsync());
+            return View();
         }
 
         // GET: Postagems/Details/5

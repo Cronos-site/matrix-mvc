@@ -470,6 +470,20 @@ Ensure the default browser behavior of the `hidden` attribute.
     --tw-backdrop-sepia:;
 }
 
+.centralizarElemento {
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    margin: 0 auto;
+}
+
+.centralizarTexto {
+    display: flex;
+    text-align: center;
+}
+
+
+
 .container {
     width: 100%;
 }

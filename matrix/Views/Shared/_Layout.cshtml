@@ -177,7 +177,7 @@
                                         </a>
                                     </li>
                                     <li class="relative group">
-                                        <a href="#contact"
+                                        <a asp-area="" asp-controller="Postagems" asp-action="Index"
                                            class="
                         ud-menu-scroll
                         text-base text-dark
@@ -244,7 +244,7 @@
                         transition-[top]
                         duration-300
                       ">
-                                            <a href="about.html"
+                                            <a asp-area="" asp-controller="Servicos" asp-action="Index"
                                                class="
                           block
                           text-sm text-body-color
@@ -376,6 +376,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
+
         </main>
     </div>
 
