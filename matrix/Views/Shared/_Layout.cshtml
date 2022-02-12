@@ -102,7 +102,7 @@
                 ">
                                 <ul class="blcok lg:flex">
                                     <li class="relative group">
-                                        <a href="#home"
+                                        <a asp-area="" asp-controller="Home" asp-action="Index"
                                            class="
                         ud-menu-scroll
                         text-base text-dark
@@ -336,39 +336,9 @@
                                     </li>
                                 </ul>
                             </nav>*@
+                            
                         </div>
-                        <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
-                            <a href="signin.html"
-                               class="
-                  text-base
-                  font-medium
-                  text-white
-                  hover:opacity-70
-                  py-3
-                  px-7
-                  loginBtn
-                ">
-                                Sign In
-                            </a>
-                            <a href="signup.html"
-                               class="
-                  text-base
-                  font-medium
-                  text-white
-                  bg-white bg-opacity-20
-                  rounded-lg
-                  py-3
-                  px-6
-                  hover:bg-opacity-100 hover:text-dark
-                  signUpBtn
-                  duration-300
-                  ease-in-out
-                ">
-                                Sign Up
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                       <partial name="_LoginPartial" /> 
             </div>
         </div>
         <!-- ====== Navbar Section End -->
