@@ -7,6 +7,6 @@ namespace matrix.Models.Views
         public string Descricao { get; set; }
         public string TipoServico { get; set; }
         public string UrlFotoServico { get; set; }
-
+        public int NomeServico { get; set; }
     }
 }

@@ -63,15 +63,50 @@
 }
 else
 {
-    <div class="divlogin">
+    @*<div class="divlogin">
         <li class="nav-item">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
         </li>
         <li class="nav-item">
-            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
         </li>
+        </div>*@
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn">
+                <img class="imgEvent" src="~/assets/images/login/logoutIcon.png" alt="" style="height: 40px;" onclick="dropdown()"></img>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#">Olá, @UserManager.GetUserName(User)</a>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="dropbtn"> Logout</button>
+                </form>
+            </div>
+        </div>
     </div>
-
 }
+<script>
+    function testest() {
+
+    }
+    </script>
+<script>
+
+    function dropdown() {
+       document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+
+    window.onclick = function(e) {
+        console.log(e)
+      if (!e.target.matches('.imgEvent')) {
+      var myDropdown = document.getElementById("myDropdown");
+        if (myDropdown.classList.contains('show')) {
+          myDropdown.classList.remove('show');
+        }
+      }
+    }
+
+</script>

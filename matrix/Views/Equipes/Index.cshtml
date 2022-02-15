@@ -1,35 +1,42 @@
-﻿@model IEnumerable<matrix.Models.Entidades.Equipe>
+﻿
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeEquipe)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeEquipe)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEquipe">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEquipe">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEquipe">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<!-- ====== Team Section Start -->
+    <section id="team" class="pt-20 lg:pt-[120px] pb-10 lg:pb-20">
+      <div class="container">
+        <div class="flex flex-wrap -mx-4">
+          <div class="w-full px-4">
+            <div class="text-center mx-auto mb-[60px] max-w-[620px]">
+              <span class="font-semibold text-lg text-primary mb-2 block">
+                Our Team
+              </span>
+              <h2
+                class="
+                  font-bold
+                  text-3xl
+                  sm:text-4xl
+                  md:text-[42px]
+                  text-dark
+                  mb-4
+                "
+              >
+                Meet Our Team
+              </h2>
+              <p
+                class="
+                  text-lg
+                  sm:text-xl
+                  leading-relaxed
+                  sm:leading-relaxed
+                  text-body-color
+                "
+              >
+                There are many variations of passages of Lorem Ipsum available
+                but the majority have suffered alteration in some form.
+              </p>
+            </div>
+          </div>
+        </div>

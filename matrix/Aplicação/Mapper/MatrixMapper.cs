@@ -8,7 +8,12 @@ namespace matrix.Aplicação.Mapper
     {
         public MatrixMapper()
         {
-            CreateMap<Servicos, ServicoViewModel>();
+            CreateMap<Servicos, ServicoViewModel>()
+                .ForMember(
+                view => view.NomeServico,
+                entity => entity.MapFrom(src => src.equipe.NomeEquipe)
+                );
+                
             CreateMap<ServicoViewModel, Servicos>();
         }
     }
