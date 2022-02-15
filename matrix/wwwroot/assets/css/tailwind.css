@@ -470,6 +470,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     --tw-backdrop-sepia:;
 }
 
+
+
 .centralizarElemento {
     display : flex;
     justify-content : center;
@@ -532,8 +534,8 @@ Ensure the default browser behavior of the `hidden` attribute.
         text-align: center;
         position: absolute;
         top: 25%;
-        font-family : Inter, sans-serif;
-        font-weight : bold;
+        font-family: Inter, sans-serif;
+        font-weight: bold;
     }
 
     .sectiontitlebannerchildren {
@@ -2592,3 +2594,42 @@ Ensure the default browser behavior of the `hidden` attribute.
             font-size: 40px;
         }
     }
+}
+
+@media (max-width: 1320px) {
+    .sectiontitlebanner {
+        top: 20%
+    }
+    
+}
+
+@media (max-width: 1140px) {
+    .sectiontitlebanner {
+        top: 14%
+    }
+    .sectiontitlebannerchildren {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 960px) {
+    .sectiontitlebanner {
+        top: 12%
+    }
+
+    .sectiontitlebannerchildren {
+        font-size: 31px;
+        width: 450px;
+    }
+}
+
+@media (max-width: 720px) {
+    .sectiontitlebanner {
+        top: 9%
+    }
+
+    .sectiontitlebannerchildren {
+        font-size: 19px;
+        width: 350px;
+    }
+}

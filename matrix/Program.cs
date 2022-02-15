@@ -10,6 +10,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<cronosContext>();
 builder.Services.AddControllersWithViews();
 
+
+
 builder.Services.AddIdentity<Pessoa, IdentityRole>()
     .AddEntityFrameworkStores<cronosContext>()
     .AddDefaultTokenProviders();
@@ -20,6 +22,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
     options.LoginPath = "/Identity/Account/Login";
 });
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

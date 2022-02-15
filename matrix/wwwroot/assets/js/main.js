@@ -41,15 +41,8 @@
             const sticky = ud_header.offsetTop;
             const logo = document.querySelector(".header-logo");
                 ud_header.classList.add("sticky");
- 
-
-  
             logo.src = "assets/images/logo/logo.svg";
-  
-            console.log("desgracaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            
         } else {
-            console.log("oi")
         }
     };
 

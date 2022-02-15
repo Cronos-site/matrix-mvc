@@ -1,0 +1,39 @@
+﻿@model matrix.Models.Views.PostagemViewModel
+
+
+<div class="w-full md:w-1/2 lg:w-1/3 px-4">
+                <div class="
+                ud-single-testimonial
+                p-8
+                bg-white
+                mb-12
+                shadow-testimonial
+                wow
+                fadeInUp
+              "
+                     data-wow-delay=".15s
+              ">
+                    
+                    <div class="ud-testimonial-content mb-6">
+                        <p class="text-base tracking-wide text-body-color">
+                            @Model.Titulo
+                        </p>
+                    </div>
+                    <div class="ud-testimonial-info flex items-center">
+                        <div class="
+                    ud-testimonial-image
+                    w-[50px]
+                    h-[50px]
+                    rounded-full
+                    overflow-hidden
+                    mr-5
+                  ">
+                           <img src="assets/images/testimonials/author-03.png"
+                                 alt="author" />
+                        </div>
+                        <div class="ud-testimonial-meta">
+                            <h4 class="text-sm font-semibold">@Model.NomePessoa</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>

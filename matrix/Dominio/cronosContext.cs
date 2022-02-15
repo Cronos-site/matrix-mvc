@@ -31,5 +31,7 @@ namespace matrix.Dominio
         public virtual DbSet<Postagem> Postages { get; set; } = null;
         public DbSet<Equipe> Equipe { get; set; }
         public DbSet<Servicos> Servicos { get; set; }
+
+
     }
 }
