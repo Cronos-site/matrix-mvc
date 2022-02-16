@@ -11,6 +11,6 @@ namespace matrix.Models.Entidades
         public string UrlFotoServico { get; set; }
         public bool MostraPagInicial { get; set; }
         public int EquipeId { get; set; }
-        public virtual Equipe equipe { get; set; }
+        public virtual Equipe Equipe { get; set; }
     }
 }

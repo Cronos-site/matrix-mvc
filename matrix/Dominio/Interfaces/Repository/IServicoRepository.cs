@@ -2,7 +2,7 @@
 
 namespace matrix.Dominio.Interfaces.Repository
 {
-    public interface IServicoRepository : IRepository<Postagem>
+    public interface IServicoRepository : IRepository<Servicos>
     {
     }
 }

@@ -1,58 +1,34 @@
 ﻿using matrix.Dominio;
 using matrix.Dominio.Interfaces.Repository;
 using matrix.Models.Entidades;
+using Microsoft.EntityFrameworkCore;
 
 namespace matrix.Data.Repository
 {
-    public class ServicoRepository : Repository<Servicos>, IPostagemRepository
+    public class ServicoRepository : Repository<Servicos>, IServicoRepository
     {
-        protected readonly cronosContext _context;
+       
         public ServicoRepository(cronosContext context) : base(context)
         {
-        }
-        public void Atualizar(Postagem entidade)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void CriarNovo(Postagem entidade)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Deletar(Postagem entidade)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool Exists(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override Servicos ObterPorId(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public override List<Servicos> ObterTodos()
         {
-            throw new NotImplementedException();
+            return _context.Servicos.Include(p => p.Equipe).Where(s => s.MostraPagInicial == true).ToList();
         }
 
-        public bool Salvar(Postagem entidade)
+        public override Servicos ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            return _context.Servicos
+                .Include(p => p.Equipe)
+                .Where(postagem => postagem.Equipe.IdEquipe == id)
+                .First();
         }
 
-        Postagem IRepository<Postagem>.ObterPorId(int id)
+        public override bool Exists(int id)
         {
-            throw new NotImplementedException();
+            return _context.Servicos.Any(e => e.Equipe.IdEquipe == id);
         }
 
-        List<Postagem> IRepository<Postagem>.ObterTodos()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

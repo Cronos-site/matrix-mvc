@@ -11,7 +11,7 @@ namespace matrix.Aplicação.Mapper
             CreateMap<Servicos, ServicoViewModel>()
                 .ForMember(
                 view => view.NomeServico,
-                entity => entity.MapFrom(src => src.equipe.NomeEquipe)
+                entity => entity.MapFrom(src => src.Equipe.NomeEquipe)
                 );
                 
             CreateMap<ServicoViewModel, Servicos>();

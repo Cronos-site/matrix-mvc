@@ -2699,10 +2699,9 @@ Ensure the default browser behavior of the `hidden` attribute.
         font-size: 19px;
         width: 350px;
     }
+    #navbarCollapse {
+        left: 480px;
+    }
+
 }
 
-@media (max-width: 620px) {
-    .sectiontitlebanner {
-        top: 9%
-    }
-}

@@ -7,7 +7,6 @@ namespace matrix.Data.Repository
 {
     public class PostagemRepository : Repository<Postagem>, IPostagemRepository
     {
-        protected readonly cronosContext _context;
         public PostagemRepository(cronosContext context) : base(context)
         {
         }
@@ -15,7 +14,7 @@ namespace matrix.Data.Repository
         public override List<Postagem> ObterTodos()
         {
    
-            return _context.Postages.Include(p => p.Pessoa).ToList();
+            return _context.Postages.Include(p => p.Pessoa).Where(s => s.mostraPagInicial == true).ToList();
         }
 
         public override Postagem ObterPorId(int id)

@@ -23,7 +23,7 @@ namespace matrix.Controllers
         // GET: Servicos
         public async Task<IActionResult> Index()
         {
-            var cronosContext = _context.Servicos.Include(s => s.equipe);
+            var cronosContext = _context.Servicos.Include(s => s.Equipe);
             return View(await cronosContext.ToListAsync());
         }
 
@@ -36,7 +36,7 @@ namespace matrix.Controllers
             }
 
             var servicos = await _context.Servicos
-                .Include(s => s.equipe)
+                .Include(s => s.Equipe)
                 .FirstOrDefaultAsync(m => m.IdServico == id);
             if (servicos == null)
             {
@@ -132,7 +132,7 @@ namespace matrix.Controllers
             }
 
             var servicos = await _context.Servicos
-                .Include(s => s.equipe)
+                .Include(s => s.Equipe)
                 .FirstOrDefaultAsync(m => m.IdServico == id);
             if (servicos == null)
             {

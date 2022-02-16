@@ -317,13 +317,13 @@ namespace matrix.Migrations
 
             modelBuilder.Entity("matrix.Models.Entidades.Servicos", b =>
                 {
-                    b.HasOne("matrix.Models.Entidades.Equipe", "equipe")
+                    b.HasOne("matrix.Models.Entidades.Equipe", "Equipe")
                         .WithMany()
                         .HasForeignKey("EquipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("equipe");
+                    b.Navigation("Equipe");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

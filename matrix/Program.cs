@@ -1,4 +1,6 @@
+using matrix.Data.Repository;
 using matrix.Dominio;
+using matrix.Dominio.Interfaces.Repository;
 using matrix.Models.Entidades;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<cronosContext>();
 builder.Services.AddControllersWithViews();
 
-
+builder.Services.AddTransient<IPostagemRepository, PostagemRepository>();
+builder.Services.AddTransient<IServicoRepository, ServicoRepository>();
 
 builder.Services.AddIdentity<Pessoa, IdentityRole>()
     .AddEntityFrameworkStores<cronosContext>()
