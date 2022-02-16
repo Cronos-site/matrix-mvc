@@ -15,6 +15,22 @@ namespace matrix.Aplicação.Mapper
                 );
                 
             CreateMap<ServicoViewModel, Servicos>();
+
+            CreateMap<Postagem, PostagemViewModel>()
+                .ForMember(
+                view => view.NomePessoa,
+                entity => entity.MapFrom(src => src.Pessoa.UserName)
+                );
+
+            CreateMap<PostagemViewModel, Postagem>();
+
+            CreateMap<Pessoa, PessoaViewModel>()
+                .ForMember(
+                view => view.NomePessoa,
+                entity => entity.MapFrom(src => src.UserName)
+                );
+
+            CreateMap<PessoaViewModel, Pessoa>();
         }
     }
 }

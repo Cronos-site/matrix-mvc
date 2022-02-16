@@ -470,6 +470,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     --tw-backdrop-sepia:;
 }
 
+.margintopnavbar {
+    margin: 50px;
+}
+
 .navbar {
     overflow: hidden;
 }
