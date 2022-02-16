@@ -521,10 +521,15 @@ Ensure the default browser behavior of the `hidden` attribute.
     display: block;
 }
 
+#navbarToggler  span{
+    z-index : 99999;
+    background-color:black;
+}
+
 .centralizarElemento {
-    display : flex;
-    justify-content : center;
-    align-items : center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
 }
 
@@ -546,6 +551,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-right: 16px;
     padding-left: 16px;
 }
+
+
 
 @media (min-width: 540px) {
     @media (min-width: 540px) {
@@ -2654,7 +2661,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 @media (max-width: 1140px) {
     .sectiontitlebanner {
-        top: 14%
+        top: 18%;
     }
     .sectiontitlebannerchildren {
         font-size: 42px;
@@ -2662,23 +2669,40 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (max-width: 960px) {
-    .sectiontitlebanner {
-        top: 12%
-    }
 
     .sectiontitlebannerchildren {
-        font-size: 31px;
-        width: 450px;
+        font-size: 26px;
+        width: 400px;
     }
+    #btnlogin {
+        margin-right: 40px;
+    }
+    #navbarCollapse {
+        position: absolute;
+        left: 570px;
+        top: 0;
+        height: 100vh;
+        z-index: -10;
+        padding-top: 100px;
+    }
+
+
+
 }
 
 @media (max-width: 720px) {
     .sectiontitlebanner {
-        top: 9%
+        top: 14%
     }
 
     .sectiontitlebannerchildren {
         font-size: 19px;
         width: 350px;
+    }
+}
+
+@media (max-width: 620px) {
+    .sectiontitlebanner {
+        top: 9%
     }
 }

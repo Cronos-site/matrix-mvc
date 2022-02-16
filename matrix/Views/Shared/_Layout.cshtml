@@ -20,6 +20,15 @@
 </head>
 <body>
 
+    <script>
+
+        function testando() {
+        const navbarCollapse = document.querySelector("#navbarCollapse")
+        navbarCollapse.classList.toggle("hidden")
+        }
+
+    </script>
+
     @*<header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
@@ -69,7 +78,7 @@
                     </div>
                     <div class="flex px-4 justify-between items-center w-full">
                         <div>
-                            <button id="navbarToggler"
+                            <button id="navbarToggler" onclick="testando()"
                                     class="
                   block
                   absolute
@@ -82,7 +91,7 @@
                   px-3
                   py-[6px]
                   rounded-lg
-                ">
+                " >
                                 <span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
                                 <span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
                                 <span class="relative w-[30px] h-[2px] my-[6px] block bg-white"></span>
