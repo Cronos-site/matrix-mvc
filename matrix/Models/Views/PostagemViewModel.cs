@@ -5,11 +5,14 @@ namespace matrix.Models.Views
 {
     public class PostagemViewModel
     {
+        public int idPost { get; set; }
         [Required]
         public string? Descricao { get; set; }
         [Required]
         public string Titulo { get; set; }
-        public DateTime Date { get; set; }
+        public string Resumo { get; set; }
+        public string Date { get; set; }
+        public string LinkImagemPostagem { get; set; }
         public string NomePessoa { get; set; }
     }
 }

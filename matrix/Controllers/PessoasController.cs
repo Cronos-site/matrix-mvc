@@ -1,14 +1,26 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using matrix.Dominio.Interfaces.Repository;
+using matrix.Models.Views;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace matrix.Controllers
 {
     public class PessoasController : Controller
     {
-        
+        private readonly IPessoaRepository _pessoaRepository;
+        private readonly IMapper _mapper;
+        public PessoasController(IPessoaRepository pessoaRepository, IMapper mapper)
+        {
+            _pessoaRepository = pessoaRepository;
+            _mapper = mapper;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var listaPessoas = _pessoaRepository.ObterTodos();
+            List<PessoaViewModel> listViewPessoa = _mapper.Map<List<PessoaViewModel>>(listaPessoas);
+            return View(listViewPessoa);
         }
 
         

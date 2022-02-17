@@ -19,7 +19,10 @@ namespace matrix.Aplicação.Mapper
             CreateMap<Postagem, PostagemViewModel>()
                 .ForMember(
                 view => view.NomePessoa,
-                entity => entity.MapFrom(src => src.Pessoa.UserName)
+                entity => entity.MapFrom(src => src.Pessoa.UserName))
+                .ForMember(
+                view => view.Date,
+                entity => entity.MapFrom(src => src.Date.ToString("dd MMMM yyyy"))
                 );
 
             CreateMap<PostagemViewModel, Postagem>();
@@ -27,7 +30,10 @@ namespace matrix.Aplicação.Mapper
             CreateMap<Pessoa, PessoaViewModel>()
                 .ForMember(
                 view => view.NomePessoa,
-                entity => entity.MapFrom(src => src.UserName)
+                entity => entity.MapFrom(src => src.UserName))
+                .ForMember(
+                view => view.NomeEquipe,
+                entity => entity.MapFrom(src => src.Equipe.NomeEquipe)
                 );
 
             CreateMap<PessoaViewModel, Pessoa>();

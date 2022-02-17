@@ -38,9 +38,14 @@
                 but the majority have suffered alteration in some form.
               </p>
             </div>
-          </div>
-        </div>
-        @foreach(var pessoa in Model)
+            <div class="divintegrantes centralizarElemento">
+          @foreach(var pessoa in Model)
         {
             <partial name="_Integrante" model="pessoa"/>
         }
+          </div>
+          
+        </div>
+        </div>
+        
+        </section>

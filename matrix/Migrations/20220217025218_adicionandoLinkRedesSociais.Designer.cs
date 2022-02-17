@@ -11,8 +11,8 @@ using matrix.Dominio;
 namespace matrix.Migrations
 {
     [DbContext(typeof(cronosContext))]
-    [Migration("20220215230212_relacionamentoPessoaEquipe")]
-    partial class relacionamentoPessoaEquipe
+    [Migration("20220217025218_adicionandoLinkRedesSociais")]
+    partial class adicionandoLinkRedesSociais
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -90,6 +90,12 @@ namespace matrix.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
+
+                    b.Property<string>("linkGitHub")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("linkLinkedin")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -298,7 +304,7 @@ namespace matrix.Migrations
             modelBuilder.Entity("matrix.Models.Entidades.Pessoa", b =>
                 {
                     b.HasOne("matrix.Models.Entidades.Equipe", "Equipe")
-                        .WithMany()
+                        .WithMany("Pessoas")
                         .HasForeignKey("EquipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -377,6 +383,11 @@ namespace matrix.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("matrix.Models.Entidades.Equipe", b =>
+                {
+                    b.Navigation("Pessoas");
                 });
 #pragma warning restore 612, 618
         }

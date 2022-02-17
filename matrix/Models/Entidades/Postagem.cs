@@ -12,6 +12,8 @@ namespace matrix.Models.Entidades
         public string Titulo { get; set; }
         public DateTime Date { get; set; }
         public bool mostraPagInicial { get; set; }
+        public string Resumo { get; set; }
+        public string? LinkImagemPostagem { get; set; }
         public string PessoaId { get; set; }
         public virtual Pessoa Pessoa { get; set; }
 

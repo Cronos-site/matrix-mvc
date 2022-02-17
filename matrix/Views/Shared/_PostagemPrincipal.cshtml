@@ -1,0 +1,61 @@
+﻿@model matrix.Models.Views.PostagemViewModel
+
+ <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+            <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
+              <div class="rounded overflow-hidden mb-8">   
+                <input type="hidden" asp-for="@Model.idPost" name="IdPost" id="IdProduto" class="block">
+                <a asp-action="detais" asp-controller="postagems" class="block">
+                  <img
+                    src="@Model.LinkImagemPostagem"
+                    alt="image"
+                    class="
+                      w-full
+                      transition
+                      group-hover:scale-125 group-hover:rotate-6
+                    "
+                  />
+                </a>
+                <input type="submit" value="Detais"/>
+              </div>
+              <div>
+                <span
+                  class="
+                    bg-primary
+                    rounded
+                    inline-block
+                    text-center
+                    py-1
+                    px-4
+                    text-xs
+                    leading-loose
+                    font-semibold
+                    text-white
+                    mb-5
+                  "
+                >
+                  @Model.Date
+                </span>
+                <h3>
+                  <a
+                    href="blog-details.html"
+                    class="
+                      font-semibold
+                      text-xl
+                      sm:text-2xl
+                      lg:text-xl
+                      xl:text-2xl
+                      mb-4
+                      inline-block
+                      text-dark
+                      hover:text-primary
+                    "
+                  >
+                    @Model.Titulo
+                  </a>
+                </h3>
+                <p class="text-base text-body-color">
+                  @Model.Resumo
+                </p>
+              </div>
+            </div>
+          </div>

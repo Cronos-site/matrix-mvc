@@ -529,8 +529,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .centralizarElemento {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+    padding-top: 50px;
+    flex-wrap: wrap;
 }
 
 .centralizarTexto {

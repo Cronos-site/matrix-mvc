@@ -7,6 +7,7 @@ namespace matrix.Models.Entidades
         [Key]
         public int IdEquipe{ get; set; }
         public string NomeEquipe{ get; private set; }
-
+        public virtual List<Pessoa> Pessoas { get; set; }
+        
     }
 }
