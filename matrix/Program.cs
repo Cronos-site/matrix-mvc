@@ -15,6 +15,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IPostagemRepository, PostagemRepository>();
 builder.Services.AddTransient<IServicoRepository, ServicoRepository>();
 builder.Services.AddTransient<IPessoaRepository, PessoaRepository>();
+builder.Services.AddTransient<IEquipeRepository, EquipeRepository>();
 
 builder.Services.AddIdentity<Pessoa, IdentityRole>()
     .AddEntityFrameworkStores<cronosContext>()

@@ -14,7 +14,7 @@ namespace matrix.Data.Repository
 
         public override List<Servicos> ObterTodos()
         {
-            return _context.Servicos.Include(p => p.Equipe).Where(s => s.MostraPagInicial == true).ToList();
+            return _context.Servicos.Include(p => p.Equipe).ToList();
         }
 
         public override Servicos ObterPorId(int id)
@@ -30,5 +30,9 @@ namespace matrix.Data.Repository
             return _context.Servicos.Any(e => e.Equipe.IdEquipe == id);
         }
 
+        public List<Servicos> ObterServicosPaginaInicial()
+        {
+            return _context.Servicos.Include(p => p.Equipe).Where(s => s.MostraPagInicial == true).ToList();
+        }
     }
 }

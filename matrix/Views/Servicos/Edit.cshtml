@@ -23,11 +23,11 @@
                 <input asp-for="TipoServico" class="form-control" />
                 <span asp-validation-for="TipoServico" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="UrlFotoServico" class="control-label"></label>
                 <input asp-for="UrlFotoServico" class="form-control" />
                 <span asp-validation-for="UrlFotoServico" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="MostraPagInicial" /> @Html.DisplayNameFor(model => model.MostraPagInicial)

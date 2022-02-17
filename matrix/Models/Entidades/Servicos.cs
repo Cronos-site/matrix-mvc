@@ -8,7 +8,6 @@ namespace matrix.Models.Entidades
         public int IdServico { get; set; }
         public string Descricao { get; set; }
         public string TipoServico { get; set; }
-        public string UrlFotoServico { get; set; }
         public bool MostraPagInicial { get; set; }
         public int EquipeId { get; set; }
         public virtual Equipe Equipe { get; set; }

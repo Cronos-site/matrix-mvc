@@ -4,7 +4,7 @@
             <div class="mb-10 group wow fadeInUp" data-wow-delay=".1s">
               <div class="rounded overflow-hidden mb-8">   
                 <input type="hidden" asp-for="@Model.idPost" name="IdPost" id="IdProduto" class="block">
-                <a asp-action="detais" asp-controller="postagems" class="block">
+                <a asp-action="details" asp-route-id="@Model.idPost" asp-controller="postagems" class="block">
                   <img
                     src="@Model.LinkImagemPostagem"
                     alt="image"
@@ -15,7 +15,6 @@
                     "
                   />
                 </a>
-                <input type="submit" value="Detais"/>
               </div>
               <div>
                 <span

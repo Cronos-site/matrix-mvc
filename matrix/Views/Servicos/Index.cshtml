@@ -1,59 +1,47 @@
-﻿@model IEnumerable<matrix.Models.Entidades.Servicos>
-
+﻿@model List<matrix.Models.Views.ServicoViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Servicos";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TipoServico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UrlFotoServico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MostraPagInicial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Equipe)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@*@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoServico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UrlFotoServico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MostraPagInicial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.equipe.IdEquipe)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdServico">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdServico">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdServico">Delete</a>
-            </td>
-        </tr>*@
-}
-    </tbody>
-</table>
+<!-- ====== Features Section Start -->
+<section class="pt-20 lg:pt-[120px] pb-8 lg:pb-[70px]" id="servicosdiv">
+    <div class="container sectionstartnew">
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-full px-4 centralizarElemento">
+                <div class="mb-12 lg:mb-20 max-w-[620px]">
+                    <span class="font-semibold text-lg text-primary mb-2 block">
+                    </span>
+                    <h2 class="
+                  font-bold
+                  text-3xl
+                  sm:text-4xl
+                  md:text-[42px]
+                  text-dark
+                  mb-4
+                ">
+                        Nossa lista de serviços
+                    </h2>
+                    <p class="
+                  text-lg
+                  sm:text-xl
+                  leading-relaxed
+                  sm:leading-relaxed
+                  text-body-color
+                ">
+                        Temos uma lista vasta de serviços que podem facilitar o seu dia a dia, confira abaixo alguns deles.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3">
+            @foreach (var item in Model)
+            {
+                <partial name="_Servico" model="item" />
+            }
+
+
+
+        </div>
+    </div>
+</section>

@@ -39,10 +39,28 @@
 
 
 }
-else
+else if(User.IsInRole("Administrador"))         
 {
 
 
+    <div class="navbar">
+        <div class="dropdown">
+            <button class="dropbtn" id="btnlogin" style="margin-right: 50px">
+                <img class="imgEvent" src="~/assets/images/login/logoutIcon.png" alt="" style="height: 40px;" onclick="dropdown()"></img>
+            </button>
+            <div class="dropdown-content" id="myDropdown">
+                <a>Olá, @UserManager.GetUserName(User)</a>
+                <a asp-action="Administrador"> Painel Administrativo</a>
+                <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="dropbtn"> Logout</button>
+                </form>
+                
+            </div>
+
+        </div>
+    </div>
+} else
+{
     <div class="navbar">
         <div class="dropdown">
             <button class="dropbtn" id="btnlogin" style="margin-right: 50px">
@@ -53,22 +71,22 @@ else
                 <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button id="logout" type="submit" class="dropbtn"> Logout</button>
                 </form>
+
             </div>
+
         </div>
     </div>
 }
+
+
 <script>
     function testest() {
-
     }
     </script>
 <script>
-
     function dropdown() {
        document.getElementById("myDropdown").classList.toggle("show");
     }
-
-
     window.onclick = function(e) {
         console.log(e)
       if (!e.target.matches('.imgEvent')) {

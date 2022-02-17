@@ -6,7 +6,7 @@ namespace matrix.Models.Views
     {
         public string Descricao { get; set; }
         public string TipoServico { get; set; }
-        public string UrlFotoServico { get; set; }
-        public string NomeServico { get; set; }
+        public string? NomeEquipe { get; set; }
+        public int EquipeId { get; set; }
     }
 }
