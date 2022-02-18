@@ -53,5 +53,16 @@
                     <p class="text-body-color mb-8 lg:mb-11">
                         @Model.Descricao
                     </p>
-                </div>
+                    @if (User.IsInRole("Administrador"))
+        {
+            <a asp-action="edit" asp-route-id="@Model.IdServico" asp-controller="postagems" 
+                       class="font-medium text-base text-body-color hover:text-primary" style="font-weight: bold">
+                Editar
+            </a>
+            <a asp-action="delete" asp-route-id="@Model.IdServico" asp-controller="postagems" 
+                       class="font-medium text-base text-body-color hover:text-primary" style="padding-left: 90px; color: red">
+                Excluir
+            </a>
+        }
+    </div>
             </div>

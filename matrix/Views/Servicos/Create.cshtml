@@ -69,14 +69,13 @@
               <h3 class="font-semibold mb-8 text-2xl md:text-[26px]">
                 Serviço
               </h3>
-              <form>
+              <form asp-action="Create">
                 <div class="mb-6">
-                  <label for="fullName" class="block text-xs text-dark"
+                  <label class="block text-xs text-dark"
                     >Tipo de Serviço</label
                   >
                   <input
-                    type="text"
-                    name="fullName"
+                    name="TipoServico"
                     placeholder="Design"
                     class="
                       w-full
@@ -87,12 +86,11 @@
                   />
                 </div>
                 <div class="mb-6">
-                  <label for="email" class="block text-xs text-dark"
+                  <label class="block text-xs text-dark"
                     >Descrição</label
                   >
                   <input
-                    type="email"
-                    name="email"
+                    name="Descricao"
                     placeholder="Idealização e desenvolvimento da estetica de um produto"
                     class="
                       w-full
@@ -103,12 +101,11 @@
                   />
                 </div>
                 <div class="mb-6">
-                  <label for="phone" class="block text-xs text-dark"
+                  <label class="block text-xs text-dark"
                     >Equipe dona do Serviço</label
                   >
                   <select
-                    type="text"
-                    name="phone"
+                    name="EquipeId"
                     class="
                       form-control
                       w-full
@@ -118,7 +115,7 @@
                   ></select>
                 </div>
                 <div class="mb-6">
-                  <label for="message" class="block text-xs text-dark" style="padding-bottom: 10px"
+                  <label class="block text-xs text-dark" style="padding-bottom: 10px"
                     >Aparecerá na Pagina inicial?</label
                   >
                   <label class="form-check-label text-xs text-dark" >
@@ -128,6 +125,7 @@
                 <div class="mb-0">
                   <button
                     type="submit"
+                    value="Create"
                     class="
                       inline-flex
                       items-center

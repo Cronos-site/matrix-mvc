@@ -31,7 +31,7 @@ namespace matrix.Data.Repository
 
         public abstract List<T> ObterTodos();
 
-        public bool Salvar(T entidade)
+        public bool Salvar()
         {
             return _context.SaveChanges() > 0;
 

@@ -61,22 +61,19 @@ namespace matrix.Controllers
             return View();
         }
 
-        //// POST: Servicos/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("IdServico,Descricao,TipoServico,UrlFotoServico,MostraPagInicial,EquipeId")] Servicos servicos)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(servicos);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["EquipeId"] = new SelectList(_context.Equipe, "IdEquipe", "IdEquipe", servicos.EquipeId);
-        //    return View(servicos);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Create(ServicoViewModel servicoView)
+        {
+            if (ModelState.IsValid)
+            {
+                var servicoModel = _mapper.Map<Servicos>(servicoView);
+                _servicoRepository.CriarNovo(servicoModel);
+                _servicoRepository.Salvar();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["EquipeId"] = new SelectList(_servicoRepository.ObterTodos(), "IdEquipe", "IdEquipe", servicoView.EquipeId);
+            return View(servicoView);
+        }
 
         //// GET: Servicos/Edit/5
         //public async Task<IActionResult> Edit(int? id)
@@ -165,5 +162,12 @@ namespace matrix.Controllers
         //{
         //    return _context.Servicos.Any(e => e.IdServico == id);
         //}
+
+        public IActionResult ListaServicos()
+        {
+            var listaServicos = _servicoRepository.ObterTodos();
+            var listViewServicos = _mapper.Map<List<ServicoViewModel>>(listaServicos);
+            return View(listViewServicos);
+        }
     }
 }

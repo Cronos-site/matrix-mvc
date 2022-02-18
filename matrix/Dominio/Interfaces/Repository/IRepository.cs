@@ -7,7 +7,7 @@
         void CriarNovo(T entidade);
         void Atualizar(T entidade);
         void Deletar(T entidade);
-        bool Salvar(T entidade);
+        bool Salvar();
         bool Exists(int id);
     }
 }
