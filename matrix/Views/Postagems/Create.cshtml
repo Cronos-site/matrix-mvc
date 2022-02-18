@@ -1,52 +1,147 @@
-﻿@model matrix.Models.Entidades.Postagem
+﻿@using matrix.Models.Entidades
+@using matrix.Models.Views
+@model matrix.Models.Views.PostagemViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    
+    ViewData["idPost"] = "Create"; 
+
 }
 
-<h1>Create</h1>
-
-<h4>Postagem</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
-                <span asp-validation-for="Descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
+<div class="px-4 w-full centralizarElemento" style="margin-top: 100px; margin-bottom: 100px">
+            <div
+              class="
+                shadow-testimonial
+                rounded-lg
+                bg-white
+                py-10
+                px-8
+                md:p-[60px]
+                lg:p-10
+                2xl:p-[60px]
+                sm:py-12 sm:px-10
+                lg:py-12 lg:px-10
+                wow
+                fadeInUp
+              "
+              data-wow-delay=".2s
+              "
+            >
+              <h3 class="font-semibold mb-8 text-2xl md:text-[26px]">
+                Blog
+              </h3>
+              <form asp-action = "Create">
+                <div class="mb-6">
+                  <label for="fullName" class="block text-xs text-dark"
+                    >Blog</label
+                  >
+                  <input
+                    type="text"
+                    name="Titulo"
+                    placeholder="Título do post."
+                    class="
+                      w-full
+                      border-0 border-b border-[#f1f1f1]
+                      focus:border-primary focus:outline-none
+                      py-4
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <label class="block text-xs text-dark"
+                    >Conteúdo</label
+                  >
+                  <input
+                    name="Descricao"
+                    placeholder="Coloque o texto da postagem aqui..."
+                    class="
+                      w-full
+                      border-0 border-b border-[#f1f1f1]
+                      focus:border-primary focus:outline-none
+                      py-4
+                    "
+                  />
+                </div>
+                 <div class="mb-6">
+                  <label class="block text-xs text-dark"
+                    >Imagem</label
+                  >
+                  <input
+                    name="LinkImagemPostagem"
+                    placeholder="Cole o link da imagem aqui..."
+                    class="
+                      w-full
+                      border-0 border-b border-[#f1f1f1]
+                      focus:border-primary focus:outline-none
+                      py-4
+                    "
+                  />
+                </div>
+                 <div class="mb-6">
+                  <label class="block text-xs text-dark"
+                    >Resumo</label
+                  >
+                  <input
+                    name="Resumo"
+                    placeholder="Escreva um breve resumo."
+                    class="
+                      w-full
+                      border-0 border-b border-[#f1f1f1]
+                      focus:border-primary focus:outline-none
+                      py-4
+                    "
+                  />
+                </div>
+                <div class="mb-6">
+                  <label class="block text-xs text-dark"
+                    >Autor da Postagem</label
+                  >
+                  <select
+                    
+                    name="NomePessoa"
+                    class="
+                      form-control
+                      w-full
+                      border-0 border-b border-[#f1f1f1]
+                    "
+                    
+                    asp-items="ViewBag.idPost"
+                                       
+                    
+                  ></select>
+                </div>
+                <div class="mb-6">
+                  <label for="message" class="block text-xs text-dark" style="padding-bottom: 10px"
+                    >Aparecerá na Pagina inicial?</label
+                  >
+                  <label class="form-check-label text-xs text-dark" >
                     <input class="form-check-input" asp-for="mostraPagInicial" /> @Html.DisplayNameFor(model => model.mostraPagInicial)
                 </label>
+                </div>
+                <div class="mb-0">
+                  <button
+                    type="submit"
+                    class="
+                      inline-flex
+                      items-center
+                      justify-center
+                      py-4
+                      px-6
+                      rounded
+                      text-white
+                      bg-primary
+                      text-base
+                      font-medium
+                      hover:bg-dark
+                      transition
+                      duration-300
+                      ease-in-out
+                    "
+                  >
+                    Postar
+                  </button>
+                </div>
+              </form>
             </div>
-            <div class="form-group">
-                <label asp-for="PessoaId" class="control-label"></label>
-                <select asp-for="PessoaId" class ="form-control" asp-items="ViewBag.PessoaId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+          </div>
+        </div>

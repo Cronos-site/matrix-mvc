@@ -29,7 +29,7 @@ namespace matrix.Controllers
         // GET: Postagems
         public async Task<IActionResult> Index()
         {
-            var listaPostagem = _postagemRepository.ObterTodos();
+            var listaPostagem = _postagemRepository.ObterPostagensPaginaPrincipal();
             List<PostagemViewModel> listViewPostagem = _mapper.Map<List<PostagemViewModel>>(listaPostagem);
             return View(listViewPostagem);
         }
@@ -45,7 +45,7 @@ namespace matrix.Controllers
         // GET: Postagems/Create
         public IActionResult Create()
         {
-            //ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["idPost"] = new SelectList(_mapper.Map<List<PostagemViewModel>>(_postagemRepository.ObterTodos()), "idPost", "NomePessoa");
             return View();
         }
 
@@ -53,16 +53,18 @@ namespace matrix.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public async Task<IActionResult> Create(PostagemViewModel postagemModel)
+        public async Task<IActionResult> Create(PostagemViewModel postagemView)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(postagem);
-            //    await _context.SaveChangesAsync();
-            //    return RedirectToAction(nameof(Index));
-            //}
-            //ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id", postagem.PessoaId);
-            return View();
+            if (ModelState.IsValid)
+            {
+                var postagemModel = _mapper.Map<Postagem>(postagemView);
+                _postagemRepository.CriarNovo(postagemModel);
+                _postagemRepository.Salvar();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["idPost"] = new SelectList(_postagemRepository.ObterTodos(), "idPost", "idPost", postagemView.idPost);
+            return View(postagemView);
+            
         }
 
         //// GET: Postagems/Edit/5
