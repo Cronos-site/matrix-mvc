@@ -1,10 +1,9 @@
 ﻿@using matrix.Models.Entidades
 @using matrix.Models.Views
+
 @model matrix.Models.Views.PostagemViewModel
 
 @{
-    
-    ViewData["idPost"] = "Create"; 
 
 }
 
@@ -91,24 +90,6 @@
                       py-4
                     "
                   />
-                </div>
-                <div class="mb-6">
-                  <label class="block text-xs text-dark"
-                    >Autor da Postagem</label
-                  >
-                  <select
-                    
-                    name="NomePessoa"
-                    class="
-                      form-control
-                      w-full
-                      border-0 border-b border-[#f1f1f1]
-                    "
-                    
-                    asp-items="ViewBag.idPost"
-                                       
-                    
-                  ></select>
                 </div>
                 <div class="mb-6">
                   <label for="message" class="block text-xs text-dark" style="padding-bottom: 10px"

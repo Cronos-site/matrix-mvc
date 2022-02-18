@@ -30,7 +30,7 @@ namespace matrix.Controllers
             var listaServicos = _servicoRepository.ObterServicosPaginaInicial();
             List<ServicoViewModel> listViewServico = _mapper.Map<List<ServicoViewModel>>(listaServicos);
 
-            var listaPostagem = _postagemRepository.ObterTodos();
+            var listaPostagem = _postagemRepository.ObterPostagensPaginaPrincipal();
             List<PostagemViewModel> listViewPostagem = _mapper.Map<List<PostagemViewModel>>(listaPostagem);
 
 

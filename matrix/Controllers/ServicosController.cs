@@ -11,6 +11,7 @@ using matrix.Models.Entidades;
 using matrix.Dominio.Interfaces.Repository;
 using matrix.Models.Views;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace matrix.Controllers
 {
@@ -18,13 +19,15 @@ namespace matrix.Controllers
     {
         private readonly IServicoRepository _servicoRepository;
         private readonly IEquipeRepository _equipeRepository;
+        private readonly UserManager<Pessoa> _userManager;
         private readonly IMapper _mapper;
 
 
-        public ServicosController(IServicoRepository servicoRepository, IMapper mapper, IEquipeRepository equipeRepository)
+        public ServicosController(IServicoRepository servicoRepository, IMapper mapper, IEquipeRepository equipeRepository, UserManager<Pessoa> userManager)
         {
             _servicoRepository = servicoRepository;
             _equipeRepository = equipeRepository;
+            _userManager = userManager;
             _mapper = mapper;
         }
 
@@ -57,7 +60,7 @@ namespace matrix.Controllers
 
         public IActionResult Create()
         {
-            ViewData["EquipeId"] = new SelectList(_equipeRepository.ObterTodos(), "IdEquipe", "NomeEquipe");
+            //ViewData["EquipeId"] = new SelectList(_equipeRepository.ObterTodos(), "IdEquipe", "NomeEquipe");
             return View();
         }
 

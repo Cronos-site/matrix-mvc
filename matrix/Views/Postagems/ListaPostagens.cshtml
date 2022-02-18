@@ -1,0 +1,55 @@
+﻿@model IEnumerable<matrix.Models.Views.PostagemViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="fundonavbar">
+
+</div>
+
+<script src=~/assets/js/main.js>
+
+    teste();
+</script>
+
+<!-- ====== Blog Section Start -->
+    <section class="pt-20 lg:pt-[120px] pb-10 lg:pb-20" style="margin-top: 50px">
+        <div class="flex flex-wrap">
+            <div class="w-full mx-4">
+                <div class="text-center mx-auto mb-[60px] lg:mb-20 max-w-[620px]">
+                    <h2 class="
+                  font-bold
+                  text-3xl
+                  sm:text-4xl
+                  md:text-[42px]
+                  text-dark
+                  mb-4
+                ">
+                        Destaques no nosso blog
+                    </h2>
+                    <p class="
+                  text-lg
+                  sm:text-xl
+                  leading-relaxed
+                  sm:leading-relaxed
+                  text-body-color
+                ">
+                        Como forma de conhecimento, possuimos essa lista de postagens para que você conheça um pouco mais
+                        o mundo da tecnologia.
+                    </p>
+                </div>
+            </div>
+        </div>
+      <div class="container" 
+      style="padding-left: 100px;
+             padding-right: 100px;">
+        <div class="flex flex-wrap -mx-4">
+         @foreach(var postagem in Model)
+            {
+                <partial name="_PostagemAdm" model="postagem"/>
+            }
+        </div>
+      </div>
+    </section>
+    <!-- ====== Blog Section End -->

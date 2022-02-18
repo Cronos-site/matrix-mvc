@@ -56,6 +56,27 @@
                   @Model.Resumo
                 </p>
               </div>
-              
+              @if (User.IsInRole("Administrador"))
+        {
+            <div class="mesmaLinha" style="display: flex">
+                <div>
+                        <a asp-action="Edit" asp-route-id="@Model.idPost" asp-controller="postagems"
+                       class="font-medium text-base text-body-color hover:text-primary btn-block" style="font-weight: bold">
+                            Editar
+                        </a>
+                </div>
+                <div style="padding-left: 90px">
+                    <form asp-action="delete" method="post">
+                        <input type="hidden" value="@Model.idPost" name="id" id="id">
+
+                        <button type="submit"
+                            class="font-medium text-base text-body-color hover:text-primary btn-block "
+                            style="color: red">
+                            Excluir
+                        </button>
+                    </form>
+                </div>
+            </div>
+        }
             </div>
           </div>

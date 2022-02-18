@@ -36,5 +36,11 @@ namespace matrix.Data.Repository
             return _context.Postages.Include(p => p.Pessoa).Where(s => s.mostraPagInicial == true).ToList();
         }
 
+        public DateTime ObterDate(int idPost)
+        {
+            var obj = ObterPorId(idPost);
+            return obj.Date;
+        }
+
     }
 }

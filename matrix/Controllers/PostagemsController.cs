@@ -11,17 +11,20 @@ using matrix.Models.Entidades;
 using matrix.Dominio.Interfaces.Repository;
 using matrix.Models.Views;
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 
 namespace matrix.Controllers
 {
     public class PostagemsController : Controller
     {
         private readonly IPostagemRepository _postagemRepository;
+        private readonly UserManager<Pessoa> _userManager;
         private readonly IMapper _mapper;
 
-        public PostagemsController(IPostagemRepository postagemRepository, IMapper mapper)
+        public PostagemsController(IPostagemRepository postagemRepository, IMapper mapper, UserManager<Pessoa> userManager)
         {
             _postagemRepository = postagemRepository;
+            _userManager = userManager;
             _mapper = mapper;
 
         }
@@ -29,7 +32,7 @@ namespace matrix.Controllers
         // GET: Postagems
         public async Task<IActionResult> Index()
         {
-            var listaPostagem = _postagemRepository.ObterPostagensPaginaPrincipal();
+            var listaPostagem = _postagemRepository.ObterTodos();
             List<PostagemViewModel> listViewPostagem = _mapper.Map<List<PostagemViewModel>>(listaPostagem);
             return View(listViewPostagem);
         }
@@ -45,7 +48,7 @@ namespace matrix.Controllers
         // GET: Postagems/Create
         public IActionResult Create()
         {
-            ViewData["idPost"] = new SelectList(_mapper.Map<List<PostagemViewModel>>(_postagemRepository.ObterTodos()), "idPost", "NomePessoa");
+            ViewBag.idPost = new SelectList(_mapper.Map<List<PostagemViewModel>>(_postagemRepository.ObterTodos()), "PostagemViewModel.NomePessoa");
             return View();
         }
 
@@ -58,6 +61,8 @@ namespace matrix.Controllers
             if (ModelState.IsValid)
             {
                 var postagemModel = _mapper.Map<Postagem>(postagemView);
+                postagemModel.PessoaId = _userManager.GetUserId(User);
+                postagemModel.Date = DateTime.Now;
                 _postagemRepository.CriarNovo(postagemModel);
                 _postagemRepository.Salvar();
                 return RedirectToAction(nameof(Index));
@@ -67,58 +72,60 @@ namespace matrix.Controllers
             
         }
 
-        //// GET: Postagems/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: Postagems/Edit/5
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var postagem = await _context.Postages.FindAsync(id);
-        //    if (postagem == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id", postagem.PessoaId);
-        //    return View(postagem);
-        //}
+            var Postagem = _postagemRepository.ObterPorId(id);
+            var postagemViewModel = _mapper.Map<PostagemViewModel>(Postagem);
+            if (postagemViewModel == null)
+            {
+                return NotFound();
+            }
+            
+            
+            return View(postagemViewModel);
+        }
 
-        //// POST: Postagems/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("idPost,Descricao,Titulo,Date,mostraPagInicial,PessoaId")] Postagem postagem)
-        //{
-        //    if (id != postagem.idPost)
-        //    {
-        //        return NotFound();
-        //    }
+       
+        [HttpPost]
+       
+        public async Task<IActionResult> Edit(int id, PostagemViewModel postagemView)
+        {
+            if (id != postagemView.idPost)
+            {
+                return NotFound();
+            }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(postagem);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!PostagemExists(postagem.idPost))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["PessoaId"] = new SelectList(_context.Users, "Id", "Id", postagem.PessoaId);
-        //    return View(postagem);
-        //}
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                     var postagemModel = _mapper.Map<Postagem>(postagemView);
+                     postagemModel.PessoaId = _userManager.GetUserId(User);
+                     //postagemModel.Date = _postagemRepository.ObterDate(postagemModel.idPost);
+                    _postagemRepository.Atualizar(postagemModel);
+                    _postagemRepository.Salvar();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (_postagemRepository.Exists(postagemView.idPost))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(postagemView);
+        }
 
         //// GET: Postagems/Delete/5
         //public async Task<IActionResult> Delete(int? id)
@@ -139,20 +146,23 @@ namespace matrix.Controllers
         //    return View(postagem);
         //}
 
-        //// POST: Postagems/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var postagem = await _context.Postages.FindAsync(id);
-        //    _context.Postages.Remove(postagem);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+        // POST: Postagems/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var postagem = _postagemRepository.ObterPorId(id);
+            _postagemRepository.Deletar(postagem);
+            _postagemRepository.Salvar();
+            return RedirectToAction(nameof(Index));
+        }
 
-        //private bool PostagemExists(int id)
-        //{
-        //    return _context.Postages.Any(e => e.idPost == id);
-        //}
+        public IActionResult ListaPostagens()
+        {
+            var postagensModel = _postagemRepository.ObterTodos();
+            var postagensView = _mapper.Map<List<PostagemViewModel>>(postagensModel);
+            return View(postagensView);
+        }
+
     }
 }
