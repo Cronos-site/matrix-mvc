@@ -21,7 +21,7 @@ namespace matrix.Data.Repository
         {
             return _context.Servicos
                 .Include(p => p.Equipe)
-                .Where(postagem => postagem.Equipe.IdEquipe == id)
+                .Where(s => s.IdServico == id)
                 .First();
         }
 

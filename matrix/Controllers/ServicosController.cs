@@ -128,40 +128,14 @@ namespace matrix.Controllers
         //    return View(servicos);
         //}
 
-        //// GET: Servicos/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var servicos = await _context.Servicos
-        //        .Include(s => s.Equipe)
-        //        .FirstOrDefaultAsync(m => m.IdServico == id);
-        //    if (servicos == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(servicos);
-        //}
-
-        //// POST: Servicos/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var servicos = await _context.Servicos.FindAsync(id);
-        //    _context.Servicos.Remove(servicos);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //private bool ServicosExists(int id)
-        //{
-        //    return _context.Servicos.Any(e => e.IdServico == id);
-        //}
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var servicos = _servicoRepository.ObterPorId(id);
+            _servicoRepository.Deletar(servicos);
+            _servicoRepository.Salvar();
+            return RedirectToAction(nameof(Index));
+        }
 
         public IActionResult ListaServicos()
         {
