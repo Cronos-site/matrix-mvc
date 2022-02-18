@@ -4,6 +4,7 @@ using matrix.Dominio.Interfaces.Repository;
 using matrix.Models;
 using matrix.Models.Entidades;
 using matrix.Models.Views;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +40,7 @@ namespace matrix.Controllers
             return View(homeModel);
         }
 
+        [Authorize(Roles = "Administrador")]
         public IActionResult Administrador()
         {
             return View();

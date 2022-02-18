@@ -4,7 +4,75 @@
     ViewData["Title"] = "Access denied";
 }
 
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">You do not have access to this resource.</p>
-</header>
+<script src="assets/js/wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
+
+<!-- ====== 404 Section Start -->
+    <section class="bg-white py-14 lg:py-20">
+      <div class="container">
+        <div class="flex flex-wrap -mx-4">
+          <div class="w-full px-4">
+            <div
+              class="
+                max-w-[850px]
+                mx-auto
+                text-center
+                bg-white
+                rounded-lg
+                relative
+                overflow-hidden
+                py-20
+                px-8
+                sm:px-12
+                md:px-[60px]
+                shadow-lg
+                wow
+                fadeInUp
+              "
+              data-wow-delay=".2s"
+            >
+              <h2
+                class="
+                  font-bold
+                  mb-8
+                  text-dark text-3xl
+                  sm:text-4xl
+                  lg:text-[40px]
+                  xl:text-[42px]
+                "
+              >
+                Acesso negado.
+              </h2>
+              <h3 class="font-normal mb-8 text-xl md:text-2xl text-dark-700">
+                O seu usuário não dá acesso a essa pagina, Clique pra voltar para página inicial.
+              </h3>
+              <ul class="flex flex-wrap justify-center">
+                <li>
+                  <a
+                    asp-action="index" asp-controller="home"
+                    class="
+                      text-base
+                      font-medium
+                      py-3
+                      px-6
+                      text-dark
+                      rounded-md
+                      mx-2
+                      my-1
+                      inline-block
+                      bg-[#f5f8ff]
+                      hover:bg-primary hover:text-white
+                    "
+                  >
+                    Home
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== 404 Section End -->

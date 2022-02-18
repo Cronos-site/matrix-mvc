@@ -12,6 +12,7 @@ using matrix.Dominio.Interfaces.Repository;
 using matrix.Models.Views;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace matrix.Controllers
 {
@@ -39,32 +40,15 @@ namespace matrix.Controllers
             return View(listViewServico);
         }
 
-        // GET: Servicos/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var servicos = await _context.Servicos
-        //        .Include(s => s.Equipe)
-        //        .FirstOrDefaultAsync(m => m.IdServico == id);
-        //    if (servicos == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(servicos);
-        //}
-
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
-            //ViewData["EquipeId"] = new SelectList(_equipeRepository.ObterTodos(), "IdEquipe", "NomeEquipe");
+            ViewData["EquipeId"] = new SelectList(_equipeRepository.ObterTodos(), "IdEquipe", "NomeEquipe");
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create(ServicoViewModel servicoView)
         {
             if (ModelState.IsValid)
@@ -78,6 +62,7 @@ namespace matrix.Controllers
             return View(servicoView);
         }
 
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -97,6 +82,7 @@ namespace matrix.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, ServicoViewModel servicoViewModel)
         {
             if (id != servicoViewModel.IdServico)
@@ -130,6 +116,7 @@ namespace matrix.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var servicos = _servicoRepository.ObterPorId(id);
@@ -138,6 +125,7 @@ namespace matrix.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Administrador")]
         public IActionResult ListaServicos()
         {
             var listaServicos = _servicoRepository.ObterTodos();

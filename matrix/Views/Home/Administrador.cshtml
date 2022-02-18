@@ -47,57 +47,7 @@
         </div>
 
         <div class="flex flex-wrap items-center justify-center">
-          <div class="w-full md:w-1/2 lg:w-1/3">
-            <div
-              class="
-                bg-white
-                rounded-xl
-                relative
-                z-10
-                overflow-hidden
-                border border-primary border-opacity-20
-                shadow-pricing
-                py-10
-                px-8
-                sm:p-12
-                lg:py-10 lg:px-6
-                xl:p-12
-                mb-10
-                text-center
-                wow
-                fadeInUp
-              "
-              data-wow-delay=".15s
-              "
-            >
-              
-              <h2 class="font-semibold text-primary mb-9 text-[28px]">
-                Integrantes
-              </h2>
-
-              <div class="mb-10">
-                <a asp-action="index" asp-controller="home" class="text-base font-medium text-black leading-loose mb-1">
-                  Editar
-                </a>
-                
-              </div>
-              
-              <span
-                class="
-                  absolute
-                  left-0
-                  bottom-0
-                  z-[-1]
-                  w-14
-                  h-14
-                  rounded-tr-full
-                  block
-                  bg-primary
-                "
-              >
-              </span>
-            </div>
-          </div>
+          
           <div class="w-full md:w-1/2 lg:w-1/3">
             <div
               class="
@@ -154,14 +104,28 @@
                     <a asp-action="listaServicos" asp-controller="servicos" class="text-base font-medium text-black leading-loose mb-1">
                   Editar
                 </a>
+                <span
+                class="
+                  absolute
+                  left-0
+                  bottom-0
+                  z-[-1]
+                  w-14
+                  h-14
+                  rounded-tr-full
+                  block
+                  bg-primary
+                "
+              >
                 </div>
               </div>
                 
             </div>
           </div>
-          <div class="w-full md:w-1/2 lg:w-1/3">
+          <div class="w-full md:w-1/2 lg:w-1/3" style="margin-left: 0px;">
             <div
               class="
+               
                 bg-white
                 rounded-xl
                 relative
@@ -178,10 +142,27 @@
                 text-center
                 wow
                 fadeInUp
+              
               "
-              data-wow-delay=".15s
+              data-wow-delay=".1s
               "
             >
+              <span
+                class="
+                  inline-block
+                  py-2
+                  px-6
+                  border border-white
+                  rounded-full
+                  text-base
+                  font-semibold
+                  text-primary
+                  bg-white
+                  uppercase
+                  mb-5
+                "
+              >
+              </span>
               
               <h2 class="font-semibold text-primary mb-9 text-[28px]">
                 Postagens
@@ -197,11 +178,7 @@
                     <a asp-action="ListaPostagens" asp-controller="postagems" class="text-base font-medium text-black leading-loose mb-1">
                   Editar
                 </a>
-                </div>
-
-              </div>
-              
-              <span
+                <span
                 class="
                   absolute
                   right-0
@@ -215,9 +192,14 @@
                 "
               >
               </span>
+                </div>
+              </div>
+                
             </div>
           </div>
-        </div>
+
+          
+          </div>        
       </div>
     </section>
     <!-- ====== Pricing Section End -->

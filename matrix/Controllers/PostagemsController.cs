@@ -12,9 +12,11 @@ using matrix.Dominio.Interfaces.Repository;
 using matrix.Models.Views;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace matrix.Controllers
 {
+
     public class PostagemsController : Controller
     {
         private readonly IPostagemRepository _postagemRepository;
@@ -29,7 +31,6 @@ namespace matrix.Controllers
 
         }
 
-        // GET: Postagems
         public async Task<IActionResult> Index()
         {
             var listaPostagem = _postagemRepository.ObterTodos();
@@ -37,7 +38,6 @@ namespace matrix.Controllers
             return View(listViewPostagem);
         }
 
-        // GET: Postagems/Details/5
         public async Task<IActionResult> Details(int id)
         {
             var Postagem = _postagemRepository.ObterPorId(id);
@@ -45,17 +45,16 @@ namespace matrix.Controllers
             return View(postagemViewModel);
         }
 
-        // GET: Postagems/Create
+        [Authorize(Roles = "Administrador")]
         public IActionResult Create()
         {
             ViewBag.idPost = new SelectList(_mapper.Map<List<PostagemViewModel>>(_postagemRepository.ObterTodos()), "PostagemViewModel.NomePessoa");
             return View();
         }
 
-        // POST: Postagems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Create(PostagemViewModel postagemView)
         {
             if (ModelState.IsValid)
@@ -72,7 +71,7 @@ namespace matrix.Controllers
             
         }
 
-        // GET: Postagems/Edit/5
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
@@ -93,7 +92,7 @@ namespace matrix.Controllers
 
        
         [HttpPost]
-       
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> Edit(int id, PostagemViewModel postagemView)
         {
             if (id != postagemView.idPost)
@@ -127,28 +126,8 @@ namespace matrix.Controllers
             return View(postagemView);
         }
 
-        //// GET: Postagems/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var postagem = await _context.Postages
-        //        .Include(p => p.Pessoa)
-        //        .FirstOrDefaultAsync(m => m.idPost == id);
-        //    if (postagem == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(postagem);
-        //}
-
-        // POST: Postagems/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrador")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var postagem = _postagemRepository.ObterPorId(id);
@@ -156,7 +135,7 @@ namespace matrix.Controllers
             _postagemRepository.Salvar();
             return RedirectToAction(nameof(Index));
         }
-
+        [Authorize(Roles = "Administrador")]
         public IActionResult ListaPostagens()
         {
             var postagensModel = _postagemRepository.ObterTodos();
