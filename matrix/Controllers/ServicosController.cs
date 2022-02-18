@@ -75,58 +75,56 @@ namespace matrix.Controllers
             return View(servicoView);
         }
 
-        //// GET: Servicos/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var servicos = await _context.Servicos.FindAsync(id);
-        //    if (servicos == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    ViewData["EquipeId"] = new SelectList(_context.Equipe, "IdEquipe", "IdEquipe", servicos.EquipeId);
-        //    return View(servicos);
-        //}
+            var servicos = _servicoRepository.ObterPorId(id);
+            var servicoModel = _mapper.Map<ServicoViewModel>(servicos);
+            if (servicoModel == null)
+            {
+                return NotFound();
+            }
+            ViewData["EquipeId"] = new SelectList(_equipeRepository.ObterTodos(), "IdEquipe", "NomeEquipe", servicoModel.EquipeId);
+            return View(servicoModel);
+        }
 
-        //// POST: Servicos/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("IdServico,Descricao,TipoServico,UrlFotoServico,MostraPagInicial,EquipeId")] Servicos servicos)
-        //{
-        //    if (id != servicos.IdServico)
-        //    {
-        //        return NotFound();
-        //    }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(servicos);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ServicosExists(servicos.IdServico))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["EquipeId"] = new SelectList(_context.Equipe, "IdEquipe", "IdEquipe", servicos.EquipeId);
-        //    return View(servicos);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, ServicoViewModel servicoViewModel)
+        {
+            if (id != servicoViewModel.IdServico)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var servicoModel = _mapper.Map<Servicos>(servicoViewModel);
+                    _servicoRepository.Atualizar(servicoModel);
+                    _servicoRepository.Salvar();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_servicoRepository.Exists(servicoViewModel.IdServico))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            //ViewData["EquipeId"] = new SelectList(_equipeRepository.ob, "IdEquipe", "IdEquipe", servicos.EquipeId);
+            return View(servicoViewModel);
+        }
 
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)

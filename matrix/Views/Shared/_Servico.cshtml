@@ -55,16 +55,14 @@
         </p>
         @if (User.IsInRole("Administrador"))
         {
-            <div class="row">
-                <div class="col-md-6">
-                    <form asp-action="Edit">
-                        <a asp-action="edit" asp-route-id="@Model.IdServico" asp-controller="postagems"
+            <div class="mesmaLinha" style="display: flex">
+                <div>
+                        <a asp-action="Edit" asp-route-id="@Model.IdServico" asp-controller="servicos"
                        class="font-medium text-base text-body-color hover:text-primary btn-block" style="font-weight: bold">
                             Editar
                         </a>
-                    </form>
                 </div>
-                <div class="col-md-6">
+                <div style="padding-left: 90px">
                     <form asp-action="delete" method="post">
                         <input type="hidden" value="@Model.IdServico" name="id" id="id">
 
